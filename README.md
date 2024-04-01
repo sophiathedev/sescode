@@ -1,4 +1,4 @@
-# sescode: SEcure Source Code
+# sescode: SEcure Source CODE
 
 ### Usage:
 ```
