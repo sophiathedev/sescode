@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    base64 (0.2.0)
+    lex (0.1.0)
+    optparse (0.4.0)
+
+PLATFORMS
+  ruby
+  x86_64-darwin-23
+
+DEPENDENCIES
+  base64
+  lex
+  optparse
+
+BUNDLED WITH
+   2.5.7
