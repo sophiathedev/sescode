@@ -62,9 +62,7 @@ class FileHash
     identifier_list.sort_by! { |t| [t.length, t] }.reverse!
 
     # The source code will have some user definition macros so we temporary remove the user preprocessor
-    preprocessor_list.each do |pre|
-      @source_content.gsub! /#{Regexp.escape(pre)}\n/, ''
-    end
+    @source_content.gsub! /\#.*\n+/, ''
 
     # Store the hashed name into a hash
     identifier_hash = Hash.new
