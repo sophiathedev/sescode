@@ -62,7 +62,8 @@ class FileHash
     identifier_list.sort_by! { |t| [t.length, t] }.reverse!
 
     # The source code will have some user definition macros so we temporary remove the user preprocessor
-    @source_content.gsub! /\#.*\n+/, ''
+    @source_content.gsub! /\#.*/, ''
+    @source_content.gsub! /\n+/, ''
 
     # Store the hashed name into a hash
     identifier_hash = Hash.new
@@ -72,7 +73,7 @@ class FileHash
       verbose "    #{_id} [#{identifier_hash[_id]}]", banner: false
 
       # replace it when source code have only that body code (without preprocessor and definition)
-      @source_content.gsub! /#{Regexp.escape(_id)}/, "_#{identifier_hash[_id]}"
+      @source_content.gsub! /\b#{Regexp.escape(_id)}\b/, "_#{identifier_hash[_id]}"
     end
 
     # Process write into file
