@@ -22,6 +22,7 @@ module LanguageExt
     rule :CHAR, /\'.*\'/
 
     rule :NUMBER, /\d+/ do |lexer, token|
+      token.value = token.value.to_i
       token
     end
     rule :IDENTIFIER, /[_\$a-zA-Z][_\$0-9a-zA-Z]*/
@@ -62,7 +63,7 @@ module LanguageExt
       elsif token.name == :PREPROCESSOR
         preprocessor_list << token.value.squeeze(' ')
       elsif token.name == :NUMBER
-        @source_content.gsub! /\b#{Regexp.escape(token.value)}\b/, "0x#{token.value.to_i.to_s(16)}"
+        @source_content.gsub! /\b#{Regexp.escape(token.value.to_s)}\b/, "0x#{token.value.to_s(16)}"
       end
     end
 
