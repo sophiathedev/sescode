@@ -14,10 +14,6 @@ opts_parser = OptionParser.new do |opts|
     options[:output_file] = filepath
   end
 
-  opts.on("-v", "--[no-]verbose", "Run verbosely") do |verbosity|
-    options[:verbose] = verbosity
-  end
-
   opts.on("-a ALGORITHM", "--algorithm ALGORITHM", "Hash algorithm used") do |algo|
     options[:algo] = algo.to_sym
   end
@@ -49,5 +45,5 @@ if __FILE__ == $0
     puts "error: A source code file required.\nUse -h for help message."
     exit
   end
-  FileHash.new(language: options[:target_lang], algorithm: options[:algo], verbose: options[:verbose]).do(options[:file], options[:output_file])
+  FileHash.new(language: options[:target_lang], algorithm: options[:algo]).do(options[:file], options[:output_file])
 end
