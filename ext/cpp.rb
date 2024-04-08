@@ -21,7 +21,7 @@ module LanguageExt
     rule :STRING, /\".*\"/
     rule :CHAR, /\'.*\'/
 
-    rule :NUMBER, /\d+/ do |lexer, token|
+    rule :NUMBER, /\b\d+\b/ do |lexer, token|
       token.value = token.value.to_i
       token
     end
@@ -63,7 +63,7 @@ module LanguageExt
       elsif token.name == :PREPROCESSOR
         preprocessor_list << token.value.squeeze(' ')
       elsif token.name == :NUMBER
-        @source_content.gsub! /\b#{Regexp.escape(token.value.to_s)}\b/, "0x#{token.value.to_s(16)}"
+        @source_content.gsub! /#{Regexp.escape("\b" + token.value.to_s + "\b")}/, "0x#{token.value.to_s(16)}"
       end
     end
 
